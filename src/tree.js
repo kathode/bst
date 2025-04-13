@@ -53,4 +53,22 @@ export class Tree {
       this.prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
     }
   };
+
+  insert(value, root = this.root) {
+    if (root === null) {
+      return new Node(value);
+    }
+
+    if (value === root.data) {
+      return root;
+    }
+
+    if (value < root.data) {
+      root.left = this.insert(value, root.left);
+    } else if (value > root.data) {
+      root.right = this.insert(value, root.right);
+    }
+
+    return root;
+  }
 }
