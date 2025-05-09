@@ -71,4 +71,43 @@ export class Tree {
 
     return root;
   }
+
+  deleteItem(value, root = this.root) {
+    if (value === null) {
+      return null;
+    }
+
+    if (value < root.data) {
+      root.left = this.deleteItem(value, root.left);
+    }
+    if (value > root.data) {
+      root.right = this.deleteItem(value, root.right);
+    }
+    if (value === root.data) {
+      // leaf node delete right away
+      if (root.left === null && root.right === null) {
+        return null;
+      }
+
+      // 1 child, find the child of the target node and overide the parent with its child
+      if ((root.left === null && root.right !== null) || (root.left !== null && root.right === null)) {
+        root = root.left ? root.left : root.right;
+        return root;
+      }
+
+      // 2 children, loop to find lowest replacement, override target and recurse to remove replacement
+      if (root.left !== null && root.right !== null) {
+        let successor = root.right;
+
+        while (successor.left !== null) {
+          successor = successor.left;
+        }
+
+        root.data = successor.data;
+        root.right = this.deleteItem(successor.data, root.right);
+      }
+    }
+
+    return root;
+  }
 }
