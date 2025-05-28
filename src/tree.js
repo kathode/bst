@@ -161,4 +161,16 @@ export class Tree {
 
     callback(levels);
   }
+
+  preOrder(callback) {
+    function traverse(node) {
+      if (node === null) return;
+
+      callback(node.data);
+      traverse(node.left);
+      traverse(node.right);
+    }
+
+    traverse(this.root);
+  }
 }
