@@ -162,6 +162,18 @@ export class Tree {
     callback(levels);
   }
 
+  inOrder(callback) {
+    function traverse(node) {
+      if (node === null) return;
+
+      traverse(node.left);
+      callback(node.data);
+      traverse(node.right);
+    }
+
+    traverse(this.root);
+  }
+
   preOrder(callback) {
     function traverse(node) {
       if (node === null) return;
