@@ -110,4 +110,17 @@ export class Tree {
 
     return root;
   }
+
+  find(value, root = this.root) {
+    if (root === null) {
+      console.log("Node not found");
+    } else if (value < root.data) {
+      root.left = this.find(value, root.left);
+    } else if (value > root.data) {
+      root.right = this.find(value, root.right);
+    } else if (value === root.data) {
+      console.log(root);
+    }
+    return root;
+  }
 }
