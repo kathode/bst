@@ -163,6 +163,10 @@ export class Tree {
   }
 
   inOrder(callback) {
+    if (typeof callback !== "function") {
+      throw new Error("Callback function is required");
+    }
+
     function traverse(node) {
       if (node === null) return;
 
@@ -175,6 +179,10 @@ export class Tree {
   }
 
   preOrder(callback) {
+    if (typeof callback !== "function") {
+      throw new Error("Callback function is required");
+    }
+
     function traverse(node) {
       if (node === null) return;
 
@@ -187,6 +195,10 @@ export class Tree {
   }
 
   postOrder(callback) {
+    if (typeof callback !== "function") {
+      throw new Error("Callback function is required");
+    }
+
     function traverse(node) {
       if (node === null) return;
 
