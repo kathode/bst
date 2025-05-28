@@ -139,4 +139,26 @@ export class Tree {
       if (node.right !== null) queue.push(node.right);
     }
   }
+
+  levelOrderRecurssion(callback) {
+    if (typeof callback !== "function") {
+      throw new Error("Callback function is required");
+    }
+
+    let levels = [];
+
+    function traverse(node, depth = 0) {
+      if (!node) return;
+
+      if (!levels[depth]) levels[depth] = [];
+      levels[depth].push(node);
+
+      traverse(node.left, depth + 1);
+      traverse(node.right, depth + 1);
+    }
+
+    traverse(this.root);
+
+    callback(levels);
+  }
 }
