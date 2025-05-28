@@ -123,4 +123,20 @@ export class Tree {
     }
     return root;
   }
+
+  levelOrderIteration(callback) {
+    if (typeof callback !== "function") {
+      throw new Error("Callback function is required");
+    }
+
+    let queue = [this.root];
+
+    while (queue.length > 0) {
+      const node = queue.shift();
+      callback(node);
+
+      if (node.left !== null) queue.push(node.left);
+      if (node.right !== null) queue.push(node.right);
+    }
+  }
 }
