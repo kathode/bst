@@ -112,16 +112,18 @@ export class Tree {
   }
 
   find(value, root = this.root) {
+    let a = 1;
     if (root === null) {
       console.log("Node not found");
+      return null;
     } else if (value < root.data) {
-      root.left = this.find(value, root.left);
+      return this.find(value, root.left);
     } else if (value > root.data) {
-      root.right = this.find(value, root.right);
+      return this.find(value, root.right);
     } else if (value === root.data) {
-      console.log(root);
+      console.log("Found", root);
+      return root;
     }
-    return root;
   }
 
   levelOrderIteration(callback) {
@@ -171,7 +173,7 @@ export class Tree {
       if (node === null) return;
 
       traverse(node.left);
-      callback(node.data);
+      callback(node);
       traverse(node.right);
     }
 
@@ -186,7 +188,7 @@ export class Tree {
     function traverse(node) {
       if (node === null) return;
 
-      callback(node.data);
+      callback(node);
       traverse(node.left);
       traverse(node.right);
     }
@@ -204,7 +206,7 @@ export class Tree {
 
       traverse(node.left);
       traverse(node.right);
-      callback(node.data);
+      callback(node);
     }
 
     traverse(this.root);
