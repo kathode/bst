@@ -112,7 +112,6 @@ export class Tree {
   }
 
   find(value, root = this.root) {
-    let a = 1;
     if (root === null) {
       console.log("Node not found");
       return null;
@@ -224,5 +223,19 @@ export class Tree {
 
     const targetNode = this.find(target);
     return traverse(targetNode);
+  }
+
+  depth(target, root = this.root, count = 0) {
+    if (root === null) {
+      console.log("Node not found");
+      return null;
+    } else if (target < root.data) {
+      return this.depth(target, root.left, ++count);
+    } else if (target > root.data) {
+      return this.depth(target, root.right, ++count);
+    } else if (target === root.data) {
+      console.log("Found", count);
+      return count;
+    }
   }
 }
