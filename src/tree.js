@@ -211,4 +211,18 @@ export class Tree {
 
     traverse(this.root);
   }
+
+  height(target) {
+    function traverse(node) {
+      if (node === null) return -1;
+
+      let leftHeight = traverse(node.left);
+      let rightHeight = traverse(node.right);
+
+      return Math.max(leftHeight, rightHeight) + 1;
+    }
+
+    const targetNode = this.find(target);
+    return traverse(targetNode);
+  }
 }
