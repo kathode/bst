@@ -256,4 +256,10 @@ export class Tree {
 
     return check(root) !== -1;
   }
+
+  rebalance() {
+    const newArr = [];
+    this.inOrder((node) => newArr.push(node.data));
+    this.root = this.buildTree(newArr);
+  }
 }
